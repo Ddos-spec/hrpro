@@ -3,7 +3,8 @@ import catalog from "../data/catalog.json";
 import "../styles/global.css";
 
 const base = import.meta.env.BASE_URL ?? "/";
-const withBase = (path) => (path.startsWith("/") ? `${base}${path.slice(1)}` : `${base}${path}`);
+const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+const withBase = (path) => (path.startsWith("/") ? `${normalizedBase}${path.slice(1)}` : `${normalizedBase}${path}`);
 
 const waNumber = "628131178127";
 const waMessage = (name) =>
@@ -65,7 +66,7 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
       <section class="hero" id="katalog">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Katalog 2024/2025</p>
+            <p class="eyebrow">Katalog 2025/2026</p>
             <h1>Katalog Rental Event yang Rapi, Lengkap, dan Siap Pakai</h1>
             <p class="lead">
               Dari sofa VIP sampai perlengkapan event, semua ada di satu katalog.

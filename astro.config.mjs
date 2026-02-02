@@ -7,7 +7,6 @@ const site = 'https://ddos-spec.github.io/hrpro';
 
 // https://astro.build/config
 export default defineConfig({
-	outDir: './docs',
 	site,
 	base,
 });

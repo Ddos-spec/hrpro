@@ -2,6 +2,9 @@
 import catalog from "../data/catalog.json";
 import "../styles/global.css";
 
+const base = import.meta.env.BASE_URL ?? "/";
+const withBase = (path) => (path.startsWith("/") ? `${base}${path.slice(1)}` : `${base}${path}`);
+
 const waNumber = "628131178127";
 const waMessage = (name) =>
   `Halo HRproduction, saya mau sewa ${name}. Mohon info harga & ketersediaan.`;
@@ -17,7 +20,7 @@ const grouped = categories.map((name) => ({
 
 const totalItems = catalog.length;
 const phonePrimary = "+62 813-8117-8127";
-const phoneAlt = "+62 813-8792-7481";
+const phoneAlt = "";
 const email = "hrproduction202@gmail.com";
 const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
 ---
@@ -28,8 +31,8 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="HRproduction - katalog rental sofa dan perlengkapan event. Lengkap, bersih, dan siap acara." />
     <meta name="theme-color" content="#121620" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -70,7 +73,7 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
             </p>
             <div class="hero-actions">
               <a class="btn btn-accent" href="#produk">Lihat Produk</a>
-              <a class="btn btn-ghost" href="/katalog.pdf" target="_blank" rel="noreferrer">Download PDF</a>
+              <a class="btn btn-ghost" href={withBase("/katalog.pdf")} target="_blank" rel="noreferrer">Download PDF</a>
             </div>
             <div class="hero-stats">
               <div>
@@ -98,7 +101,7 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
                 <li>
                   <span>Telepon</span>
                   <strong>{phonePrimary}</strong>
-                  <small>{phoneAlt}</small>
+                  {phoneAlt && <small>{phoneAlt}</small>}
                 </li>
                 <li>
                   <span>Email</span>
@@ -140,7 +143,7 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
                 {group.items.map((item, idx) => (
                   <article class="product-card" style={`--i: ${idx}`}>
                     <div class="product-media">
-                      <img src={item.image} alt={item.name} loading="lazy" />
+                      <img src={withBase(item.image)} alt={item.name} loading="lazy" />
                     </div>
                     <div class="product-body">
                       <h4>{item.name}</h4>
@@ -176,7 +179,7 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
           <h4>Kontak</h4>
           <ul>
             <li>{phonePrimary}</li>
-            <li>{phoneAlt}</li>
+            {phoneAlt && <li>{phoneAlt}</li>}
             <li>{email}</li>
             <li>{address}</li>
           </ul>
@@ -184,7 +187,7 @@ const address = "Jl Beringin II RT 001/007 Pamulang Barat, Tangsel";
         <div>
           <h4>Quick Action</h4>
           <a class="btn btn-accent" href={`https://wa.me/${waNumber}?text=${encodeURIComponent("Halo HRproduction, saya mau tanya ketersediaan produk.")}`} target="_blank" rel="noreferrer">Chat WhatsApp</a>
-          <a class="btn btn-ghost" href="/katalog.pdf" target="_blank" rel="noreferrer">Download PDF</a>
+          <a class="btn btn-ghost" href={withBase("/katalog.pdf")} target="_blank" rel="noreferrer">Download PDF</a>
         </div>
       </div>
       <div class="container footer-bottom">
